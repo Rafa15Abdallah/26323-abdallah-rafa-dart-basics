@@ -1,31 +1,50 @@
 // Student: Rafa Abdallah
-// Reg no: 26323d
+// Reg no: 26323
 const String regNo = '26323';
 final int d = int.parse(regNo[regNo.length - 1]);
 final int t = int.parse(regNo.substring(regNo.length - 2));
 
-void main() {
-  print('Reg no: $regNo | D = $d | T = $t');
-  
-//part A1:
-int a = 17;
-int b = 5;
-print(a/b); //3.4
-print(a ~/ b);//3
-print(a % b);//2
-print(-a % b); //3
-print(-a ~/ b); //-3
-print(-17.abs());//-17
-print(0.1 + 0.2 == 0.3);// false
-print(10 == 10.0); // true
-//PartA2:
-int x = 3; // your D
-int y = 23; // your T
-var z = x * 2 + y ~/ 4;
-z += x;
-print(z);
-print(z.isEven);
-print('$z' + '$x');
+int countVowels(String text) {
+  // by RA
+  int count = 0;
+  String lower = text.toLowerCase();
+  int i = 0;
+  while (i < lower.length) {
+    if (lower[i] == 'a' ||
+        lower[i] == 'e' ||
+        lower[i] == 'i' ||
+        lower[i] == 'o' ||
+        lower[i] == 'u') {
+      count++;
+    }
+    i++;
+  }
+  return count;
 }
 
+String initials(String fullName) {
+  // by RA
+  String result = '';
+  List<String> words = fullName.split(' ');
+  int i = 0;
+  while (i < words.length) {
+    if (words[i].isNotEmpty) {
+      result += words[i][0].toUpperCase() + '.';
+    }
+    i++;
+  }
+  return result;
+}
 
+void main() {
+  print('Reg no: $regNo | D = $d | T = $t');
+
+  // B2
+  String name = 'rafa abdallah mohammed abdallah';
+  print('$name has ${countVowels(name)} vowels');
+
+  // B3
+  print(initials(name));
+  print(initials(' ana uwase '));
+  print('[${initials(' ')}]');
+}
