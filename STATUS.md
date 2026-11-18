@@ -1,18 +1,27 @@
-# Status
-
-Rafa Abdallah | Reg no: 26323 | D = 3 | T = 23
+# The final Status
 
 ## Done
-- Setup: made the repo, README, and the personal block in my code.
-- A1: predicted all 8 lines. I got 3 wrong at first, but now I understand why.
-- A2: z is 14 and it is an int, because Dart guesses the type from the values.
-- B1: explained all the String lines, like why '$city.length' prints Kigali.length.
-- B2: countVowels works. toLowerCase() is what makes capital letters count.
-- B3: initials works, even with extra spaces and empty text.
+- Project folder created and Git initialized.
+- README.md created.
+- A1: Operators trace completed.
+- A2: Personal registration number values completed.
+- B1: String methods trace completed.
+- B2: `countVowels()` function implemented and tested.
+- B3: `initials()` function implemented and tested with extra spaces.
+- C1: Continue and break trace completed.
+- C2: Switch statement trace completed.
+- C3: Null-aware operators and do-while trace completed.
+- C4: Personal loop trace completed.
+- C5: `drawTriangle()` function implemented and tested.
+- D1: Function scope, parameters, and VAT trace completed.
+- D2: MoMo receipt printer implemented and tested.
+- Part E: Grade and palindrome functions debugged and corrected.
+- Part F: MoMo USSD simulator implemented and tested.
+- Part G: Three coding errors identified, debugged, and corrected. The causes and solutions were explained, and the reflection questions were answered.
+- Final answers PDF generated and uploaded to GitHub.
 
-## In progress
-- C1: just starting Part C.
+## In Progress
+- None.
 
-## Stuck on
-- Nothing for now.
-
+## Stuck On
+- None.
