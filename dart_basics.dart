@@ -1,11 +1,10 @@
 
-// Student: Rafa Abdallah
-// Reg no: 26323
+
 const String regNo = '26323';
 final int d = int.parse(regNo[regNo.length - 1]);
 final int t = int.parse(regNo.substring(regNo.length - 2));
 
-// B2: Count vowels
+// B2: 
 int countVowels(String text) {
   // by RA
   int count = 0;
@@ -26,7 +25,7 @@ int countVowels(String text) {
   return count;
 }
 
-// B3: Get initials
+// B3: 
 String initials(String fullName) {
   // by RA
   String result = '';
@@ -43,7 +42,7 @@ String initials(String fullName) {
   return result;
 }
 
-// C5: Draw a triangle
+// C5: 
 void drawTriangle(int height) {
   // by RA
   int row = 1;
@@ -58,7 +57,7 @@ void drawTriangle(int height) {
   }
 }
 
-// D2: Calculate MoMo transaction fees
+// D2: 
 int momoFee(int amount) {
   // by RA
   if (amount <= 0) {
@@ -74,7 +73,7 @@ int momoFee(int amount) {
   }
 }
 
-// D2: Mask phone number
+// D2: 
 String maskPhone(String phone) {
   // by RA
   if (phone.length != 10) {
@@ -86,7 +85,6 @@ String maskPhone(String phone) {
       phone.substring(8, 10);
 }
 
-// Main program
 void main() {
   // by RA
   print('Reg no: $regNo | D = $d | T = $t');
