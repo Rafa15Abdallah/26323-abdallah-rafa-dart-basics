@@ -47,7 +47,7 @@ void drawTriangle(int height) {
   // by RA
   int row = 1;
 
-  while (row <= height) {
+  while (row <=height) {
     String symbol = row % 2 == 1 ? '*' : '#';
     String spaces = List.filled(height - row, ' ').join();
     String symbols = List.filled(row, symbol).join();
@@ -90,11 +90,11 @@ void main() {
   print('Reg no: $regNo | D = $d | T = $t');
 
   // B2
-  String name = 'Rafa Abdallah Mohammed Abdallah';
-  print('$name has ${countVowels(name)} vowels');
+  String Full_name = 'Rafa Abdallah Mohammed Abdallah';
+  print('$Full_name has ${countVowels(Full_name)} vowels');
 
   // B3
-  print(initials(name));
+  print(initials(Full_name));
   print(initials(' ana uwase '));
   print('[${initials(' ')}]');
 

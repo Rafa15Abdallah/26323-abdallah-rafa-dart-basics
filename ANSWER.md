@@ -112,6 +112,280 @@ Output: `55`. `5.toString()` turns the number into the string `'5'`. Using `+` b
 Line 13: `print(int.parse('5') + 5);`
 Output: `10`. `int.parse('5')` turns the string into the integer 5. Adding two integers gives 10.
 
+Part C1:
+Output line 1: 0
+When i is 0, neither i == 2 nor i == 4 is true, so the loop reaches print(i) and prints 0.
+
+Output line 2: 1
+When i is 1, the two checks are false again, so it prints 1.
+
+What happens at i = 2 (nothing is printed)
+When i is 2, i == 2 is true, so continue runs. It skips the rest of this round, including print(i), and jumps to the next value of i. That’s why 2 is missing from the output.
+
+Output line 3: 3
+When i is 3, the checks are false, so it prints 3.
+
+What happens at i = 4 (the loop ends)
+When i is 4, i == 2 is false but i == 4 is true, so break runs. It stops the whole loop immediately, and 4 is not printed.
+
+Why 5 is never printed
+After break, the loop is finished, so i = 5 is never reached, even though i < 6 would still be true.
+
+
+Part C2:
+**Part C2: Predictions and explanations**
+
+Registration number: 26323 | D = 3 | T = 23
+
+1. When day is 2
+
+My prediction was "Early week". The actual output is "Early week". The value of day is 2, so the switch goes to case 2 and prints "Early week". After that, the switch stops by itself. It does not continue into case 3 or default, so "Midweek" and "Weekend soon" are never printed.
+
+2. When I change day to 1
+
+My prediction was "Early week". The actual output is "Early week". Now day is 1, so the switch goes to case 1. But case 1 has no code of its own, so it shares the code of case 2 right below it. That is why it prints the same "Early week". This is how Dart lets me say "if the day is 1 or 2, do this".
+
+3. What a C or Java programmer would expect
+
+A C or Java programmer would expect three lines to be printed when day is 2: "Early week", then "Midweek", then "Weekend soon". In C and Java, when a case matches, the program keeps running the code of the cases below it until it meets a break. This is called fall-through. There is no break in this code, so after printing "Early week" it would fall into case 3 and print "Midweek", and then fall into default and print "Weekend soon". In those languages, you have to write break at the end of each case to stop this.
+
+4. Why Dart 3 behaves differently
+
+In Dart 3, a case that has code stops by itself when its code is finished, so there is no need to write break. There is no fall-through. That is why Dart 3 prints only one line. The only thing that still shares code is an empty case like case 1, which joins the case below it. Dart did this because forgetting break is a very common bug in C and Java, and Dart 3 stops that bug from happening.
+
+Part C3:
+Registration number: 26323 | D = 3 | T = 23
+
+My prediction: 50, 70, 10. Actual output: 50, then 70, then 10, on three lines.
+
+Output line 1: 50
+The variable bonus is declared as a nullable int (int?) and has no value yet, so it holds null. The ?? operator means “use the left side if it is not null, otherwise use the right side”. The left side is null, so the right side, 50, is used and printed. This line does not store anything in bonus. It only chooses a value to print, so bonus is still null afterwards.
+
+Output line 2: 70
+The ??= operator means “assign the right side only if the variable is currently null”. On the first ??=, bonus is null, so it becomes 70. On the second ??=, bonus is already 70, so it is not null and the assignment is skipped. The 90 is never stored. That is why print(bonus) shows 70 and not 90.
+
+Output line 3: 10
+This is a do...while loop. A do...while runs its body first and checks the condition afterwards. So the body runs once: it prints n, which is 10, and then n becomes 13. Then the condition n < 10 is checked. 13 is not less than 10, so the condition is false and the loop stops. The body ran exactly one time, even though the condition was false from the start. A normal while loop would have printed nothing here, because it checks the condition before running the body.
+
+Part C4:
+Registration number: 26323 | D = 3 | T = 23
+
+In my code I write int x = d; using the variable from the personal block, and d is 3, so x starts at 3.
+
+My prediction: O, 1, O. Actual output: three lines, “O”, then “1”, then “O”. None of the lines prints nothing.
+
+How the loop runs
+The loop condition is x > 0. At the start x is 3, so the loop runs. Inside, the program checks x % 2. Since 3 divided by 2 leaves a remainder of 1, which is not 0, the check for even fails and the else branch runs, so the letter “O” (for odd) is added to result. Then x -= 3 makes x equal to 0. Now the condition x > 0 is false, so the loop stops after only one round.
+
+Output line 1: O
+At the end result holds just the one letter “O”, so print(result) shows O.
+
+Output line 2: 1
+result has exactly one character, so result.length is 1.
+
+Output line 3: O
+The expression result.isEmpty ? ‘nothing’ : result[0] is a conditional. It prints “nothing” if result is empty, and otherwise the first character. The result is not empty, because it contains “O”, so it prints result[0], which is O. The word “nothing” is not printed, and every line prints something
+
+
+Part D1: Predict the output and explain each line
+
+1. Predicted output
+
+I predict that the program will produce the following output:
+
+1, 5, 1180, 1178 and 1000.
+
+2. Actual output
+
+After running the program, the actual output is:
+
+1, 5, 1180, 1178 and 1000.
+
+3. Explanation of each line
+
+The first output is 1 because the count variable inside the bump function is local. Increasing it does not affect the global variable, which remains 1.
+
+The second output is 5 because the doubleIt function modifies only its local parameter and does not change the original variable.
+
+The third output is 1180 because the function adds 18% VAT to the original price of 1000.
+
+The fourth output is 1178 because 18% of 999 is 179.82, but integer division removes the decimal part, leaving 179. Adding this to 999 gives 1178.
+
+The fifth output is 1000 because the VAT rate is set to zero, so no additional amount is added.
+
+4. Why is addVat(999) not exactly 18% more than 999?
+
+The result is not exactly 18% more because the function uses integer division, which removes the decimal part of the VAT calculation. Instead of adding 179.82, it adds only 179, resulting in a final amount of 1178 instead of 1178.82.
+
+//Part D2:
+The output:
+Reg no: 26323 | D = 3 | T = 23
+Receipt 1 | 6300 RWF | fee 100 RWF | to 078*****56
+Receipt 2 | 10300 RWF | fee 250 RWF | to 078*****56
+Receipt 3 | 14300 RWF | fee 250 RWF | to 078*****56
+Receipt 4 | 18300 RWF | fee 250 RWF | to 078*****56
+Receipt 5 | 22300 RWF | fee 250 RWF | to 078*****56
+Receipt 6 | 26300 RWF | fee 250 RWF | to 078*****56
+Total fees: 1350 RWF
+
+//Part E:
+1. What does grade(85) return, and why? 
+It returns 'C' because the first condition, mark >= 50, is true for 85. The function immediately returns 'C' without checking the later conditions for grades B and A. The conditions are in the wrong order.
+
+2. What happens when you call isPalindrome('level')? Give the exact error type. 
+It produces a RangeError.
+This happens because the expression word[word.length - i] uses an invalid index. When i is 0, it tries to access word[5], but the last valid index of 'level' is 4.
+
+3. Fix both functions. List every line you changed. 
+Corrected functions:
+String grade(int mark) {
+  // by RA
+  if (mark >= 80) {
+    return 'A';
+  } else if (mark >= 70) {
+    return 'B';
+  } else if (mark >= 50) {
+    return 'C';
+  }
+  return 'F';
+}
+
+bool isPalindrome(String word) {
+  // by RA
+  int i = 0;
+  while (i < word.length) {
+    if (word[i] != word[word.length - 1 - i]) return false;
+    i++;
+  }
+  return true;
+}
+
+Lines changed:
+1. Changed the first condition from mark >= 50 to mark >= 80.
+2. Changed the second condition from mark >= 70 to mark >= 70 (the condition stays the same, but its position is moved).
+3. Changed the third condition from mark >= 80 to mark >= 50.
+4. Changed word[word.length - i] to word[word.length - 1 - i].
+The grade conditions are now checked from highest to lowest, and the palindrome function compares characters with their correct matching positions.
+
+4. Should isPalindrome('Level') return true or false? Justify your choice in 2–3 sentences. 
+My choice: True.
+I believe that a palindrome should be recognized regardless of whether its letters are uppercase or lowercase. Therefore, 'Level' should return true because it reads the same forward and backward when letter case is ignored.
+
+To make the code match this choice, convert the word to lowercase before comparing its characters.
+
+bool isPalindrome(String word) {
+  // by RA
+  word = word.toLowerCase();
+
+  int i = 0;
+  while (i < word.length) {
+    if (word[i] != word[word.length - 1 - i]) return false;
+    i++;
+  }
+  return true;
+}
+
+The test results are:
+`grade(85)` returns `'A'`.
+
+`grade(75)` returns `'B'`.
+
+`grade(45)` returns `'F'`.
+
+`isPalindrome('level')` returns `true`.
+
+`isPalindrome('Level')` returns `true`.
+
+`isPalindrome('hello')` returns `false`.
+
+Part F:
+The output:
+Reg no: 26323 | D = 3 | T = 23
+12345: false
+77777: false
+4821: false
+48a21: false
+48213: true
+Starting balance: 31,500 RWF
+Sent 12,000 RWF (fee 250 RWF). New balance: 19,250 RWF
+Sent 12,000 RWF (fee 250 RWF). New balance: 7,000 RWF
+Failed: insufficient balance
+Airtime bought: 1,000 RWF. New balance: 6,000 RWF
+Failed: invalid amount
+Failed: insufficient balance
+Final balance: 6,000 RWF
+0 RWF
+999 RWF
+1,000 RWF
+-5,000 RWF
+1,250,000 RWF
+true
+false
+false
+
+Part G:
+1. Exact wrong output (Incorrect comma formatting):
+Starting balance: 3,15,00 RWF
+Sent 1,20,00 RWF (fee 2,50 RWF). New balance: 1,92,50 RWF
+Sent 1,20,00 RWF (fee 2,50 RWF). New balance: 70,00 RWF
+Failed: insufficient balance
+Airtime bought: 10,00 RWF. New balance: 60,00 RWF
+Failed: invalid amount
+Failed: insufficient balance
+Final balance: 60,00 RWF
+0 RWF
+9,99 RWF
+10,00 RWF
+-50,00 RWF
+1,25,00,00 RWF
+true
+false
+false
+
+
+2. Line where the error came from:
+
+The condition inside formatRwf() that checks remaining % 3 == 0.
+
+3. What caused the error?
+
+By mistake, I typed 2 instead of 3 in the condition. As a result, the program inserted commas after every two digits instead of every three digits.
+
+4. How I fixed it:
+
+I changed % 2 back to % 3 so that the program inserts commas correctly after every three digits.
+
+The second one(Error message):
+dart_basics.dart:11:23: Error: A value of type 'String Function()' can't be assigned to a variable of type 'String'.
+  String lower = text.toLowerCase;
+
+  Error message: A value of type 'String Function()' can't be assigned to a variable of type 'String'.
+
+Line: Line 11 in dart_basics.dart.
+
+Cause: I forgot to add parentheses after toLowerCase.
+
+Fix: I added () to call the method and get the lowercase text
+
+The third one (Missing the last row of the triangle):
+1. Exact wrong output:
+ *
+ ##
+ 2. Line where the error came from:
+
+ line 50 while loop condition inside drawTriangle(), where I mistakenly used < instead of <=.
+
+3. What caused the error?
+
+I mistakenly used < instead of <=, causing the loop to stop before printing the final row of the triangle.
+
+4. How I fixed it:
+
+I changed the condition back to <=, allowing the loop to print all rows, including the last one.
+
+
+
+
 
 
 
