@@ -1,6 +1,5 @@
 
- // Student: Rafa Abdallah
-// Reg no: 26323
+
 const String regNo = '26323';
 final int d = int.parse(regNo[regNo.length - 1]);
 final int t = int.parse(regNo.substring(regNo.length - 2));
