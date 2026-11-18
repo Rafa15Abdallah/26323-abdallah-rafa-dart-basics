@@ -5,7 +5,7 @@ const String regNo = '26323';
 final int d = int.parse(regNo[regNo.length - 1]);
 final int t = int.parse(regNo.substring(regNo.length - 2));
 
-// 1. Format money with commas
+
 String formatRwf(int amount) {
   // by RA
   bool isNegative = amount < 0;
@@ -33,7 +33,7 @@ String formatRwf(int amount) {
   return '$result RWF';
 }
 
-// 2. Validate PIN
+
 bool isValidPin(String pin) {
   // by RA
   if (pin.length != 5) {
@@ -71,7 +71,7 @@ bool isValidPin(String pin) {
   return true;
 }
 
-// 3. Calculate MoMo transaction fee (copied from D2)
+
 int momoFee(int amount) {
   // by RA
   if (amount <= 0) {
@@ -87,7 +87,7 @@ int momoFee(int amount) {
   }
 }
 
-// 4. Send money
+
 int sendMoney(int balance, int amount) {
   // by RA
   int fee = momoFee(amount);
@@ -112,7 +112,7 @@ int sendMoney(int balance, int amount) {
   return newBalance;
 }
 
-// 5. Buy airtime
+
 int buyAirtime(int balance, int amount) {
   // by RA
   if (amount < 100 || amount > 50000) {
@@ -135,24 +135,24 @@ int buyAirtime(int balance, int amount) {
   return newBalance;
 }
 
-// Main program
+
 void main() {
   // by RA
   print('Reg no: $regNo | D = $d | T = $t');
 
-  // 1. Test PINs
+
   print("12345: ${isValidPin('12345')}");
   print("77777: ${isValidPin('77777')}");
   print("4821: ${isValidPin('4821')}");
   print("48a21: ${isValidPin('48a21')}");
   print("48213: ${isValidPin('48213')}");
 
-  // 2. Starting balance
+
   int balance = 20000 + t * 500;
 
   print('Starting balance: ${formatRwf(balance)}');
 
-  // 3. Send money three times
+ 
   int amount = (d + 1) * 3000;
 
   int i = 1;
@@ -162,27 +162,25 @@ void main() {
     i++;
   }
 
-  // Buy airtime
+ 
   balance = buyAirtime(balance, 1000);
 
-  // Send invalid amount
+ 
   balance = sendMoney(balance, 0);
 
-  // Send a large amount
+
   balance = sendMoney(balance, 200000);
 
-  // 4. Final balance
+
   print('Final balance: ${formatRwf(balance)}');
 
-  // 5. Additional tests
 
-  print(formatRwf(0));       // Expected: 0 RWF
-  print(formatRwf(999));     // Expected: 999 RWF
-  print(formatRwf(1000));    // Expected: 1,000 RWF
-  print(formatRwf(-5000));   // Expected: -5,000 RWF
-  print(formatRwf(1250000)); // Expected: 1,250,000 RWF
-
-  print(isValidPin('48213')); // Expected: true
-  print(isValidPin('00000')); // Expected: false
-  print(isValidPin('12a45')); // Expected: false
+  print(formatRwf(0));      
+  print(formatRwf(999));     
+  print(formatRwf(1000));    
+  print(formatRwf(-5000));   
+  print(formatRwf(1250000)); 
+  print(isValidPin('48213')); 
+  print(isValidPin('00000'));
+  print(isValidPin('12a45')); 
 }
